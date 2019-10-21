@@ -22,8 +22,8 @@ from linebot.models import (
     PostbackAction
 )
 
-access_token = "QOWpUISg/uvJVpPk25KsJwyrBwrvq7ltCxHE0TRjxlfABMwg5pDa3jmAaoKIgmhU9YPZBF97NSpewbDNff1XEEyVymF6Ob0MPqqeBqIX2pCZ9Q7ugEdmE6zAtmmF7t0Bn/78DU+XaTtcq8YZ+I+MHwdB04t89/1O/w1cDnyilFU="
-bot_secret = "0f5a26663f1b87d3265a89a858d565ca"
+access_token = os.environ["BOT_ACCESS_TOKEN"]
+bot_secret = os.environ["BOT_SECRET"]
 line_bot_api = LineBotApi(access_token)
 handler = WebhookHandler(bot_secret)
 app = Flask(__name__, static_folder='static')
@@ -94,8 +94,8 @@ class LinePay(object):
         return transaction_info
 
 # get it in https://pay.line.me/jp/developers/techsupport/sandbox/creation?locale=ja_JP
-chennel_id = '1653356129'
-channel_secret = '7081575736c14da990811be96fce8637'
+chennel_id = os.environ["PAY_CHANNEL_ID"]
+channel_secret = os.environ["PAY_CHANNEL_SECRET"]
 callback_url = '/callback'
 
 """
@@ -204,7 +204,7 @@ def handle_message(event):
             actions=[
                 URIAction(
                     label='LINEPayで支払い',
-                    uri="line://app/1653356763-y5x3nxO4?itemName="+event.message.text
+                    uri="{}?itemName={}".format(os.environ["LIFF_URL"], event.message.text)
                 )
             ]
         )
