@@ -45,12 +45,13 @@
       {
         "type": "button",
         "style": "primary",
-        "height": "sm",
         "action": {
           "type": "uri",
-          "label": "LINEpayでお支払い",
-          "uri": "https://linecorp.com"
+          "label": "WEBSITE",
+          "uri": "line://app/1653356763-y5x3nxO4?itemName=hogehoge"
         },
+        "flex": 5,
+        "height": "sm"
       },
 
       {
