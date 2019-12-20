@@ -1,0 +1,10 @@
+ {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "LINEpayでお支払い",
+          "uri": "https://linecorp.com"
+        }
+      }
