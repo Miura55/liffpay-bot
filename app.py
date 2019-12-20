@@ -175,11 +175,11 @@ def return_bot():
         # handler.handle(body, signature)
 
         # Flex Messageを使うときはこっち
-        with open("alert_new.json", "r", encoding="utf-8") as f:
+        with open("alert.json", "r", encoding="utf-8") as f:
             json_data = json.load(f)
             syohin = data["events"][0]["message"]["text"]
             print(syohin)
-            json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4&itemName=" + syohin
+            json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4?itemName=" + syohin
             line_bot_api.push_message(
                 userId,
                     [
