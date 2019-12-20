@@ -15,8 +15,7 @@
         },
         "flex": 5,
         "color": "#FF00EF",
-        "height": "sm",
-        "style": "link"
+        "height": "sm"
       }
     ]
   }
