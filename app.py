@@ -179,7 +179,7 @@ def return_bot():
             json_data = json.load(f)
             syohin = data["events"][0]["message"]["text"]
             print(syohin)
-            json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4?itemName=" + syohin
+            # json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4?itemName=" + syohin
             line_bot_api.push_message(
                 userId,
                     [
