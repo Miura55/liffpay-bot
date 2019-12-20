@@ -175,7 +175,7 @@ def return_bot():
         # handler.handle(body, signature)
 
         # Flex Messageを使うときはこっち
-        with open("alert.json", "r", encoding="utf-8") as f:
+        with open("alert_new.json", "r", encoding="utf-8") as f:
             json_data = json.load(f)
             syohin = data["events"][0]["message"]["text"]
             print(syohin)
