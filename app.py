@@ -171,22 +171,24 @@ def return_bot():
         userId = data["events"][0]["source"]["userId"]
         if userId == "Udeadbeefdeadbeefdeadbeefdeadbeef":
             return "OK"
-        handler.handle(body, signature)
+        # templateMessageを使うときはこっち
+        # handler.handle(body, signature)
 
-        # with open("alert.json", "r", encoding="utf-8") as f:
-        #     json_data = json.load(f)
-        #     syohin = data["events"][0]["message"]["text"]
-        #     print(syohin)
-        #     json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4&itemName=" + syohin
-        #     line_bot_api.push_message(
-        #         userId,
-        #             [
-        #                 FlexSendMessage(
-        #                     alt_text="お支払いがあります",
-        #                     contents=BubbleContainer.new_from_json_dict(json_data)
-        #                 )
-        #             ]
-        #         )
+        # Flex Messageを使うときはこっち
+        with open("alert.json", "r", encoding="utf-8") as f:
+            json_data = json.load(f)
+            syohin = data["events"][0]["message"]["text"]
+            print(syohin)
+            json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4&itemName=" + syohin
+            line_bot_api.push_message(
+                userId,
+                    [
+                        FlexSendMessage(
+                            alt_text="お支払いがあります",
+                            contents=BubbleContainer.new_from_json_dict(json_data)
+                        )
+                    ]
+                )
     except Exception as e:
         print(e)
         abort(400)
