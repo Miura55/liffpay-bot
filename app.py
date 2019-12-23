@@ -3,6 +3,7 @@ from flask import Flask, request, abort, render_template, redirect
 import requests
 from flask_bootstrap import Bootstrap
 from flask_cors import CORS
+import urllib.parse
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -115,7 +116,7 @@ def render_index_app():
 @app.route("/reserve/<UserId>/<itemName>", methods=["POST"])
 def redirect_to_pay(UserId=None, itemName=None):
     print("got: ", request.form)
-    data = {"product_name": itemName,
+    data = {"product_name": urllib.parse.unquote(itemName),
             'amount':'100',
             'currency':'JPY',
             'order_id':uuid.uuid4().hex,
@@ -176,7 +177,7 @@ def return_bot():
             json_data = json.load(f)
             syohin = data["events"][0]["message"]["text"]
             print(syohin)
-            json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4?itemName=" + syohin
+            json_data["footer"]["contents"][0]["action"]["uri"] = "line://app/1653356763-y5x3nxO4?itemName=" + urllib.parse.quote(syohin)
             line_bot_api.push_message(
                 userId,
                     [
