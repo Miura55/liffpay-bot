@@ -138,7 +138,10 @@ def callback_from_pay():
 
     with open("recipt.json", "r", encoding="utf-8") as f:
         json_data = json.load(f)
+        # レシートに値を変更する
+        json_data["body"]["contents"][4]["contents"][0]["text"] = transaction_info["productName"]
         json_data["body"]["contents"][6]["contents"][1]["text"] = transaction_info["orderId"]
+        # レシートを送信
         line_bot_api.push_message(
             userId,
                 [
